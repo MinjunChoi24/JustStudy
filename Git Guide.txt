@@ -1,0 +1,35 @@
+Git Guide
+
+
+
+# gitignore 만들기
+echo. > .gitignore
+
+
+# 1. 이 폴더를 Git 저장소로 시작
+git init
+
+# 2. 내 코드 파일들 전부 '장바구니'에 담기 (점 . 을 찍으면 전체 선택입니다)
+git add .
+
+# 3. 저장 기록 남기기
+git commit -m " "
+
+# 4. 올리기
+git push
+
+# 실제로 올라갔는지 확인하기
+git status
+
+# 폴더 만들기 (Make Directory)
+mkdir notebooks
+
+# 파일 이동하기 (Move)
+move test.ipynb notebooks\
+
+
+# 깃허브 연결 끊기
+rmdir /s /q .git
+
+# 강제로 덮어 씌우기
+git push -u origin main --force
