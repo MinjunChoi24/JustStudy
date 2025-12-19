@@ -1,1 +1,21 @@
- 
+### 1. 대용량 데이터 파일 (금융 데이터 등) ###
+# *.csv
+# *.xlsx
+*.xls
+*.json
+*.zip
+
+### 2. 파이썬 관련 쓰레기 파일 ###
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+### 3. 시스템 및 로그 파일 ###
+*.log
+.DS_Store
+Thumbs.db
+
+### 4. 개인 보안 키 (DART API 키 등) ###
+key.txt
+config.py
