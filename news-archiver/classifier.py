@@ -10,7 +10,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_article(article):
     # ✅ 2025년 최신 모델 사용
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash-lite-preview-09-2025')
 
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
@@ -19,13 +19,16 @@ def analyze_article(article):
     Title: {article['Title']}
     Summary: {article['Summary']} 
     
-    [Requirements]
+    [Requirements] 
     1. Category: Classify the news (e.g. Company,Finance,Market,Industry,Real estate,Macro)
     2. Subject: The main entity or keyword (e.g., Samsung, NPS, US Treasury).
     3. Sector: Follow this rule strictly:
         If the Category is 'Company': Identify the specific business sector the company belongs to (e.g., Semiconductor, Automotive, Bio, Banking).
         If the Category is NOT 'Company': Leave this field blank (empty string).
     4. Summary: {article['Summary']} 
+    5. Language & Format Rule: 
+   - Translate (Category, Subject, Sector) into English. (except for Summary)
+   - Use the official global company name (e.g., use "Samsung Electronics" instead of "Samsung", "Hyundai Motor" instead of "Hyundai").
     
     Output JSON only. Do NOT use Markdown code blocks. Just raw JSON.
     """

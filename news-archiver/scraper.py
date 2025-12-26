@@ -24,33 +24,36 @@ def get_news_data(target_date=None):
             return []
         
         soup = BeautifulSoup(response.text, 'html.parser')
-        start = soup.find("div",{"class":"ct_wrap"})
-        ul = start.find("ul",{"class":"sa_list"})
-        li = ul.find_all("li")
-
         news_list = []
-        for i in li:
-            
-            sa = i.find("div",{"class":"sa_text"})
-            summary = sa.find("div",{"class":"sa_text_lede"}).text
-            press = sa.find("div",{"class":"sa_text_press"}).text
-            link_title = i.find_all("a")
-            for j in link_title:
-                link = j['href']
-                img_tag = j.find("img")
-                if img_tag:
-                    title = img_tag['alt']
-                    news_item = {
-                        "Title": title,
-                        "Date": target_date,
-                        "Summary": summary,
-                        "URL": link,
-                        "Press": press
-                    }
-                    news_list.append(news_item)
+        div= soup.find_all("div",{"class":"section_article _TEMPLATE"})
 
+
+        for di in div:
+            ul = di.find("ul",{"class":"sa_list"})
+            li = ul.find_all("li")
+
+            for i in li:
+                sa = i.find("div",{"class":"sa_text"})
+                summary = sa.find("div",{"class":"sa_text_lede"}).text
+                press = sa.find("div",{"class":"sa_text_press"}).text
+                link_title = i.find_all("a")
+                for j in link_title:
+                    link = j['href']
+                    img_tag = j.find("img")
+                    if img_tag:
+                        title = img_tag['alt']
+                        news_item = {
+                            "Title": title,
+                            "Date": target_date,
+                            "Summary": summary,
+                            "URL": link,
+                            "Press": press
+                        }
+                        news_list.append(news_item)
+            
+        return news_list
+    
     except Exception as e:
         print(f"에러 발생: {e}")
         return []
     
-    return news_list
