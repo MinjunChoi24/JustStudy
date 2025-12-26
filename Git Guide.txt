@@ -63,5 +63,9 @@ q (Quit): "프로그램을 종료해라"
 
 git push origin main
 
+# 가상환경 실행 (이름 venv)
+.\venv\Scripts\activate
+
+
 --끝--
 
