@@ -10,7 +10,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_article(article):
     # ✅ 2025년 최신 모델 사용
-    model = genai.GenerativeModel('gemini-2.5-flash-lite-preview-09-2025')
+    model = genai.GenerativeModel('gemini-2.0-flash')
 
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
