@@ -1,0 +1,37 @@
+name: Daily News Archive
+
+on:
+  schedule:
+    - cron: '0 22 * * *' # 한국 시간 오전 7시
+  workflow_dispatch: # 수동 실행 버튼
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+    
+    # [중요] 모든 명령어를 'news-archiver' 폴더 안에서 실행하라고 설정
+    defaults:
+      run:
+        working-directory: ./news-archiver
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      # working-directory 설정 덕분에 자동으로 news-archiver 안의 파일을 찾습니다.
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Script
+      env:
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      run: python main.py
