@@ -22,7 +22,7 @@ def main():
         ai_result = analyze_article(news)
         
         # 결과 출력 (확인용)
-        print(f"   ㄴ 분류: {ai_result.get('Category')} | 주제: {ai_result.get('Subject')} | {ai_result.get('Sector')} | {ai_result.get('Summary')}")
+        print(f"   ㄴ 분류: {ai_result.get('Category')} | 주제: {ai_result.get('Subject')} | {ai_result.get('Sector')}")
         
         # 노션 저장
         save_to_notion(news, ai_result)
