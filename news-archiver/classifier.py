@@ -10,7 +10,7 @@ genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 def analyze_article(article):
     # ✅ 2025년 최신 모델 사용
-    model = genai.GenerativeModel('gemini-2.5-pro')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
@@ -41,4 +41,8 @@ def analyze_article(article):
     except Exception as e:
         print(f"❌ Gemini 분석 중 에러: {e}")
         return {"Category": "기타", "Subject": "Error", "Summary": "분석 실패"}
+    
+
+
+    
 
