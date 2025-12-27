@@ -44,4 +44,3 @@ def get_news_data(query="경제", display=20):
     except Exception as e:
         print(f"❌ 네이버 API 호출 중 오류 발생: {e}")
         return []
-
