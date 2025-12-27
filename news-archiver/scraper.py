@@ -1,9 +1,14 @@
 import requests
 import urllib.parse
 import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
-def get_news_data(query="산업", display=20):
+def get_news_data(query="금융", display=20):
+
+    load_dotenv()
+
     """
     네이버 뉴스 검색 API를 통해 뉴스 데이터를 가져옵니다.
     :param query: 검색어 (기본값: '경제')
@@ -39,8 +44,11 @@ def get_news_data(query="산업", display=20):
                 "URL": item['originallink'] or item['link']
             })
         
-        return news_list
+        # [마법의 한 줄] 제목(Title)을 기준으로 중복을 제거합니다.
+        news_list = list({news['Title']: news for news in news_list}.values())
 
+        return news_list
+    
     except Exception as e:
         print(f"❌ 네이버 API 호출 중 오류 발생: {e}")
         return []

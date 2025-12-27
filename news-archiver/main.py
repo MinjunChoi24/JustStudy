@@ -9,10 +9,10 @@ def main():
     # 1. 뉴스 수집 
     print("\n[1단계] 네이버 뉴스 긁어오는 중...")
 
-    # 1. 황금 밸런스 키워드 리스트
-    # keywords = ["경제", "증시", "산업", "기업"]
+    # 2. 황금 밸런스 키워드 리스트
+    keywords = ["경제", "금융"]
     
-    # all_news = []
+    all_news = []
 
     news_list = get_news_data()
     
