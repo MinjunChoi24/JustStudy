@@ -1,6 +1,6 @@
 import requests
 import urllib.parse
-
+import os
 
 
 def get_news_data(query="경제", display=20):
