@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def get_news_data(query="금융", display=20):
+def get_news_data(query="금융", display=30):
 
     load_dotenv()
 
@@ -37,13 +37,16 @@ def get_news_data(query="금융", display=20):
             title = item['title'].replace("<b>", "").replace("</b>", "").replace("&quot;", "\"")
             description = item['description'].replace("<b>", "").replace("</b>", "").replace("&quot;", "\"")
             
+            if any(keyword in title for keyword in ["[인사]", "[부고]", "[포토]"]):
+                continue
+
             news_list.append({
                 "Title": title,
                 "Date": item['pubDate'],
                 "Summary": description,
                 "URL": item['originallink'] or item['link']
             })
-        
+            
         # [마법의 한 줄] 제목(Title)을 기준으로 중복을 제거합니다.
         news_list = list({news['Title']: news for news in news_list}.values())
 
