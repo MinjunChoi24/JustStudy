@@ -8,6 +8,12 @@ def main():
     
     # 1. 뉴스 수집 
     print("\n[1단계] 네이버 뉴스 긁어오는 중...")
+
+    # 1. 황금 밸런스 키워드 리스트
+    # keywords = ["경제", "증시", "산업", "기업"]
+    
+    # all_news = []
+
     news_list = get_news_data()
     
     print(f"--> 총 {len(news_list)}개의 기사를 찾았습니다.")
@@ -27,8 +33,8 @@ def main():
         # 노션 저장
         save_to_notion(news, ai_result)
 
-        # [중요] 무료 API 제한을 피하기 위해 15초 쉽니다.
-        print("   ⏳ 구글 API 휴식 중 (15초)...")
+        # [중요] 무료 API 제한을 피하기 위해 8초 쉽니다.
+        print("   ⏳ 구글 API 휴식 중 (8초)...")
         time.sleep(8)
 
     print("\n✨ 모든 작업이 완료되었습니다! 노션을 확인해보세요.")
