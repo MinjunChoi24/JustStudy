@@ -2,3 +2,4 @@ requests
 google-generativeai
 python-dotenv
 notion-client
+os
