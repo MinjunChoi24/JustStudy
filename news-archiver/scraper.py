@@ -3,7 +3,7 @@ import urllib.parse
 import os
 
 
-def get_news_data(query="증시", display=20):
+def get_news_data(query="산업", display=20):
     """
     네이버 뉴스 검색 API를 통해 뉴스 데이터를 가져옵니다.
     :param query: 검색어 (기본값: '경제')
