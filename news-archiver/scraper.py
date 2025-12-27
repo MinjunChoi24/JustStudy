@@ -37,7 +37,7 @@ def get_news_data(query="금융", display=30):
             title = item['title'].replace("<b>", "").replace("</b>", "").replace("&quot;", "\"")
             description = item['description'].replace("<b>", "").replace("</b>", "").replace("&quot;", "\"")
             
-            if any(keyword in title for keyword in ["[인사]", "[부고]", "[포토]"]):
+            if any(keyword in title for keyword in ["[인사]", "[부고]", "[포토]","인사","부고","포토"]):
                 continue
 
             news_list.append({
