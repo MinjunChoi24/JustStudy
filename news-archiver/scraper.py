@@ -1,14 +1,16 @@
 import requests
 import urllib.parse
 
+
+
 def get_news_data(query="경제", display=20):
     """
     네이버 뉴스 검색 API를 통해 뉴스 데이터를 가져옵니다.
     :param query: 검색어 (기본값: '경제')
     :param display: 가져올 기사 개수 (최대 100개)
     """
-    client_id = "WXAXJ5UKZGPQ1gFdeJvG"     # 발급받은 ID 입력
-    client_secret = "bEQWtwBC2T" # 발급받은 Secret 입력
+    client_id = os.getenv("NAVER_CLIENT_ID")
+    client_secret = os.getenv("NAVER_CLIENT_SECRET")
     
     # 한글 검색어 인코딩
     encoded_query = urllib.parse.quote(query)
