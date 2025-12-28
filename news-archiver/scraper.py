@@ -7,13 +7,6 @@ load_dotenv()
 
 def get_news_data(query="금융", display=30):
 
-    load_dotenv()
-
-    """
-    네이버 뉴스 검색 API를 통해 뉴스 데이터를 가져옵니다.
-    :param query: 검색어 (기본값: '경제')
-    :param display: 가져올 기사 개수 (최대 100개)
-    """
     client_id = os.getenv("NAVER_CLIENT_ID")
     client_secret = os.getenv("NAVER_CLIENT_SECRET")
     
@@ -47,7 +40,7 @@ def get_news_data(query="금융", display=30):
                 "URL": item['originallink'] or item['link']
             })
             
-        # [마법의 한 줄] 제목(Title)을 기준으로 중복을 제거합니다.
+        # 제목(Title)을 기준으로 중복을 제거합니다.
         news_list = list({news['Title']: news for news in news_list}.values())
 
         return news_list

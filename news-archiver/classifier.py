@@ -40,7 +40,7 @@ def analyze_article(article):
 
     except Exception as e:
         print(f"❌ Gemini 분석 중 에러: {e}")
-        return {"Category": "기타", "Subject": "Error", "Summary": "분석 실패"}
+        return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
     
 
 

@@ -8,7 +8,7 @@ def main():
     
     # 1. 뉴스 수집 
     print("\n[1단계] 네이버 뉴스 긁어오는 중...")
-
+    
     news_list = get_news_data()
     
     print(f"--> 총 {len(news_list)}개의 기사를 찾았습니다.")

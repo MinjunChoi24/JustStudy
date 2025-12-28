@@ -37,7 +37,8 @@ def save_to_notion(article, ai_result):
         
         # [중요 수정] Summary는 rich_text 형식이므로 content에 담아야 함 (2000자 제한)
         summary_content = str(sum_raw)[:2000]
-
+        now_kst = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)
+        
         # 3. 노션 업로드 (순서 반영)
         notion.pages.create(
             parent={"database_id": database_id},
@@ -46,7 +47,7 @@ def save_to_notion(article, ai_result):
                     "title": [{"text": {"content": article['Title']}}]
                 },
                 "Date": { # 날짜
-                     "date": {"start": datetime.date.today().isoformat()}
+                     "date": {"start":  (datetime.date.today() + datetime.timedelta(days=1)).isoformat()}
                 },
                 "Category": { # 카테고리 (다중선택)
                     "multi_select": category_list
