@@ -2,10 +2,11 @@ import requests
 import urllib.parse
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
-def get_news_data(query="금융", display=30):
+def get_news_data(query="경제", display=20):
 
     client_id = os.getenv("NAVER_CLIENT_ID")
     client_secret = os.getenv("NAVER_CLIENT_SECRET")
@@ -32,10 +33,10 @@ def get_news_data(query="금융", display=30):
             
             if any(keyword in title for keyword in ["[인사]", "[부고]", "[포토]","인사","부고","포토"]):
                 continue
-
+            clean_date = datetime.strptime(item['pubDate'], "%a, %d %b %Y %H:%M:%S %z").isoformat()
             news_list.append({
                 "Title": title,
-                "Date": item['pubDate'],
+                "Date": clean_date,
                 "Summary": description,
                 "URL": item['originallink'] or item['link']
             })
@@ -48,3 +49,4 @@ def get_news_data(query="금융", display=30):
     except Exception as e:
         print(f"❌ 네이버 API 호출 중 오류 발생: {e}")
         return []
+

@@ -30,6 +30,8 @@ def save_to_notion(article, ai_result):
         if not isinstance(sec_raw, list):
             sec_raw = [sec_raw]
 
+        
+
         # 다중 선택(Multi-select)용 리스트 만들기
         category_list = [{"name": str(c).replace(",", "")} for c in cat_raw]
         subject_list = [{"name": str(s).replace(",", "")} for s in sub_raw]
@@ -37,7 +39,6 @@ def save_to_notion(article, ai_result):
         
         # [중요 수정] Summary는 rich_text 형식이므로 content에 담아야 함 (2000자 제한)
         summary_content = str(sum_raw)[:2000]
-        now_kst = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)
         
         # 3. 노션 업로드 (순서 반영)
         notion.pages.create(
@@ -46,8 +47,10 @@ def save_to_notion(article, ai_result):
                 "Title": {
                     "title": [{"text": {"content": article['Title']}}]
                 },
-                "Date": { # 날짜
-                     "date": {"start":  (datetime.date.today() + datetime.timedelta(days=1)).isoformat()}
+                "NewsDate":{
+                    "date" : {
+                        "start" : article['Date']
+                }
                 },
                 "Category": { # 카테고리 (다중선택)
                     "multi_select": category_list
@@ -64,6 +67,7 @@ def save_to_notion(article, ai_result):
                 "Sector":{
                     "multi_select": sector_list
                 }
+
             }
         )
         print(f"✅ 노션 저장 완료: {article['Title']}")
