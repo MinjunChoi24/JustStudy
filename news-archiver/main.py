@@ -1,7 +1,6 @@
 from scraper import get_news_data
 from classifier import analyze_article
 from uploader import save_to_notion
-import time
 
 def main():
     print("🚀 뉴스 수집 및 아카이빙 시스템 가동!")

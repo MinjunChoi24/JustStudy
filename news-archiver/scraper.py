@@ -73,12 +73,3 @@ def get_news_data():
     # 여기서 최종 결과 리스트를 반환합니다.
     return unique_news
 
-# # 3. 실행 예시
-# if __name__ == "__main__":
-#     # 함수를 호출하여 변수에 담습니다.
-#     final_news_list = collect_all_news()
-
-#     # 반환받은 리스트 활용 (예: 상위 3개만 출력해보기)
-#     print("\n[수집 결과 확인]")
-#     for i, news in enumerate(final_news_list[:3]):
-#         print(f"{i+1}. [{news['Keyword']}] {news['Title']}")

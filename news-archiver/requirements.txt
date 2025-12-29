@@ -1,4 +1,4 @@
 requests
-google-generativeai
+ollama
 python-dotenv
 notion-client

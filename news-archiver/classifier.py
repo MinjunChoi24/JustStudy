@@ -53,7 +53,5 @@ def analyze_article(article):
         print(f"❌ ollama 분석 중 에러: {e}")
         return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
     
-# # 테스트 실행 예시
-# sample_article = {"Title": "삼성전자, 3분기 영업이익 급증", "Summary": "반도체 호황으로 인해..."}
-# print(analyze_article(sample_article))
+
 
