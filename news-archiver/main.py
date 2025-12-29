@@ -28,10 +28,6 @@ def main():
         # 노션 저장
         save_to_notion(news, ai_result)
 
-        # [중요] 무료 API 제한을 피하기 위해 8초 쉽니다.
-        print("   ⏳ 구글 API 휴식 중 (8초)...")
-        time.sleep(8)
-
     print("\n✨ 모든 작업이 완료되었습니다! 노션을 확인해보세요.")
 
 if __name__ == "__main__":
