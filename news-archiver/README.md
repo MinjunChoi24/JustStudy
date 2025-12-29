@@ -1,6 +1,6 @@
 # 📈 Financial News AI Archiver (금융 뉴스 AI 자동 수집기)
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.13%2B-blue)
 ![Notion API](https://img.shields.io/badge/Notion-API-000000)
 ![Naver API](https://img.shields.io/badge/Naver-Search_API-03C75A)
 
@@ -26,9 +26,12 @@ Naver 검색 API를 통해 주요 경제 뉴스(금리, 환율, 증시 등)를 �
 
 ## 📂 Directory Structure
 ```bash
-├── main.py          # 프로그램 진입점 (Orchestrator)
-├── scraper.py       # 네이버 뉴스 수집 모듈
+├── .gitignore       # API key 등 중요한 정보 유출 방지
+├── README.md        # 프로젝트 문서
 ├── classifier.py    # AI 기반 뉴스 분석 및 분류 모듈
+├── main.py          # 프로그램 진입점 (Orchestrator)
+├── requirements.txt # 설치가 필요한 라이브러리
+├── scraper.py       # 네이버 뉴스 수집 모듈
 ├── uploader.py      # Notion 데이터베이스 업로드 모듈
 ├── .env             # 환경 변수 (API Key 관리)
 └── README.md        # 프로젝트 문서
