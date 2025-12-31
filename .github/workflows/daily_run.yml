@@ -3,37 +3,54 @@ name: Daily News Archive
 on:
   schedule:
     - cron: '0 23 * * *' # 한국 시간 오전 8시
-  workflow_dispatch: # 수동 실행 버튼
+  workflow_dispatch:     # 수동 실행 버튼
 
 jobs:
   run-scraper:
     runs-on: ubuntu-latest
     
-    # [중요] 모든 명령어를 'news-archiver' 폴더 안에서 실행하라고 설정
+    # [중요] 모든 run 명령어를 'news-archiver' 폴더 기준으로 실행
     defaults:
       run:
         working-directory: ./news-archiver
 
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
+      # 1. 코드 가져오기 (가장 먼저 실행되어야 폴더가 생김)
+      - name: Check out code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.13'
+      # 2. 파이썬 설정
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
 
-    - name: Install dependencies
-      # working-directory 설정 덕분에 자동으로 news-archiver 안의 파일을 찾습니다.
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      # 3. Ollama 설치 (Steps 안으로 이동됨)
+      - name: Install Ollama
+        run: curl -fsSL https://ollama.com/install.sh | sh
 
-    - name: Run Script
-      env:
-        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-        NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-        NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
-        NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
-      run: python main.py
+      # 4. Ollama 서버 실행
+      - name: Start Ollama Server
+        run: |
+          ollama serve &
+          sleep 5
+
+      # 5. 모델 다운로드
+      - name: Pull Llama Model
+        run: ollama pull gemma3:4b 
+
+      # 6. 파이썬 라이브러리 설치
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 7. 스크립트 실행
+      - name: Run Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: python main.py
