@@ -72,4 +72,3 @@ def get_news_data():
     
     # 여기서 최종 결과 리스트를 반환합니다.
     return unique_news
-

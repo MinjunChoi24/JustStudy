@@ -15,6 +15,7 @@ def main():
     # 2. 하나씩 AI 분석 후 노션 저장
     print("\n[2단계] AI 분석 및 노션 저장 시작...")
     
+
     for i, news in enumerate(news_list):
         print(f"\n[{i+1}/{len(news_list)}] 처리 중: {news['Title']}...")
         
