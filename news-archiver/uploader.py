@@ -74,3 +74,4 @@ def save_to_notion(article, ai_result):
     
     except Exception as e:
         print(f"❌ 노션 저장 실패: {e}")
+

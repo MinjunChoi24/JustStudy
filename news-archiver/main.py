@@ -2,6 +2,7 @@ from scraper import get_news_data
 from classifier import analyze_article
 from uploader import save_to_notion
 
+
 def main():
     print("🚀 뉴스 수집 및 아카이빙 시스템 가동!")
     
@@ -27,6 +28,7 @@ def main():
         
         # 노션 저장
         save_to_notion(news, ai_result)
+
 
     print("\n✨ 모든 작업이 완료되었습니다! 노션을 확인해보세요.")
 

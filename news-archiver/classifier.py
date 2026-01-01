@@ -1,6 +1,8 @@
 import ollama
 import json
 
+
+
 def analyze_article(article):
     """
     Analyzes a news article using the gemma3 Ollama model and returns a JSON response.
@@ -52,6 +54,15 @@ def analyze_article(article):
     except Exception as e:
         print(f"❌ ollama 분석 중 에러: {e}")
         return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
-    
+
+
+import os
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+# 1. .env 파일 로드 (같은 폴더에 있는 .env 파일을 찾아서 읽음)
+load_dotenv()
+
+
 
 
