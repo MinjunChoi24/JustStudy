@@ -6,8 +6,12 @@
 
 ### cmd
 d:
+
 cd D:\Study_Finance\news-archiver
 
+.\venv\Scripts\activate
+
+python main.py
 
 ## 📖 Project Overview
 매일 쏟아지는 방대한 금융 뉴스를 효율적으로 관리하기 위한 **자동화 파이프라인**입니다.
