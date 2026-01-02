@@ -56,13 +56,6 @@ def analyze_article(article):
         return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
 
 
-import os
-import google.generativeai as genai
-from dotenv import load_dotenv
-
-# 1. .env 파일 로드 (같은 폴더에 있는 .env 파일을 찾아서 읽음)
-load_dotenv()
-
 
 
 
