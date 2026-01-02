@@ -4,7 +4,10 @@
 ![Notion API](https://img.shields.io/badge/Notion-API-000000)
 ![Naver API](https://img.shields.io/badge/Naver-Search_API-03C75A)
 
- D:\Study_Finance\news-archiver
+### cmd
+d:
+cd D:\Study_Finance\news-archiver
+
 
 ## 📖 Project Overview
 매일 쏟아지는 방대한 금융 뉴스를 효율적으로 관리하기 위한 **자동화 파이프라인**입니다.
