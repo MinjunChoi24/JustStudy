@@ -4,6 +4,8 @@
 ![Notion API](https://img.shields.io/badge/Notion-API-000000)
 ![Naver API](https://img.shields.io/badge/Naver-Search_API-03C75A)
 
+ D:\Study_Finance\news-archiver
+
 ## 📖 Project Overview
 매일 쏟아지는 방대한 금융 뉴스를 효율적으로 관리하기 위한 **자동화 파이프라인**입니다.
 Naver 검색 API를 통해 주요 경제 뉴스(금리, 환율, 증시 등)를 수집하고, **LLM(Large Language Model)을 이용해 뉴스의 핵심 주제와 섹터를 분석**한 뒤, Notion 데이터베이스에 자동으로 아카이빙합니다.
