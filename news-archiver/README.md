@@ -2,6 +2,8 @@
 
 **Financial News Archiver**는 한국 기준 오전 8시에 금융 시장 뉴스를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
 
+## Why
+
 ## 🔄 Automated Workflow
 
 ### 1. Data Collection
