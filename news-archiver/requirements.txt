@@ -2,3 +2,4 @@ requests
 ollama
 python-dotenv
 notion-client
+PyGithub

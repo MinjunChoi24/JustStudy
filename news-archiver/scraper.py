@@ -4,6 +4,7 @@ import os
 import time
 from dotenv import load_dotenv
 from datetime import datetime
+import google.generativeai as genai
 
 load_dotenv()
 
@@ -72,3 +73,44 @@ def get_news_data():
     
     # 여기서 최종 결과 리스트를 반환합니다.
     return unique_news
+
+
+
+
+def generate_news_briefing(s):
+    """
+    뉴스 리스트를 받아 Gemini에게 브리핑 작성을 요청하는 함수
+    """
+    extracted_data = [{'Title': item['Title'], 'Summary': item['Summary']} for item in s]
+
+    # 1. Google Gemini API 키 설정
+    # 발급받은 API 키를 입력하세요. (환경변수로 관리하는 것을 추천합니다)
+    API_KEY = os.getenv("GEMINI_API_KEY")
+    genai.configure(api_key=API_KEY)
+
+    model = genai.GenerativeModel('gemini-2.5-flash')
+    # 3-1. 리스트 데이터를 LLM이 읽기 편한 문자열 포맷으로 변환
+    news_text_block = ""
+    for idx, item in enumerate(extracted_data):
+        news_text_block += f"[{idx}] 제목: {item['Title']}\n    내용: {item['Summary']}\n\n"
+
+    # 3-2. 프롬프트 작성 (페르소나 부여 및 출력 형식 지정)
+    prompt = f"""
+    Based on the following news headlines and summaries,
+    write a "Daily Market Briefing" that allows the reader
+    to quickly grasp today’s financial market conditions.
+
+    Below is today’s news:
+
+    {news_text_block}
+    """
+
+    # 4. API 호출 및 응답 생성
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"에러가 발생했습니다: {e}"
+    
+
+

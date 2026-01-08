@@ -1,6 +1,6 @@
-from scraper import get_news_data
+from scraper import get_news_data,generate_news_briefing
 from classifier import analyze_article
-from uploader import save_to_notion
+from uploader import save_to_notion,save_to_github
 
 
 def main():
@@ -10,7 +10,7 @@ def main():
     print("\n[1단계] 네이버 뉴스 긁어오는 중...")
     
     news_list = get_news_data()
-    
+    briefing_content = generate_news_briefing(news_list)
     print(f"--> 총 {len(news_list)}개의 기사를 찾았습니다.")
 
     # 2. 하나씩 AI 분석 후 노션 저장
@@ -32,5 +32,7 @@ def main():
 
     print("\n✨ 모든 작업이 완료되었습니다! 노션을 확인해보세요.")
 
+    save_to_github(briefing_content)
+    
 if __name__ == "__main__":
     main()

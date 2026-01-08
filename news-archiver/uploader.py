@@ -2,6 +2,9 @@ import os
 import datetime
 from notion_client import Client
 from dotenv import load_dotenv
+from github import Github
+from datetime import datetime
+
 
 load_dotenv()
 
@@ -75,3 +78,46 @@ def save_to_notion(article, ai_result):
     except Exception as e:
         print(f"❌ 노션 저장 실패: {e}")
 
+
+# GitHub 설정
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+REPO_NAME = "MinjunChoi24/JustStudy" 
+
+def save_to_github(briefing_content):
+
+    
+    # 1. GitHub 인증 및 레포지토리 연결
+    if not GITHUB_TOKEN:
+        print("❌ 오류: GITHUB_TOKEN이 설정되지 않았습니다.")
+        return
+
+    g = Github(GITHUB_TOKEN)
+    
+    try:
+        # 'JustStudy/news-archiver' 같은 전체 이름으로 레포지토리를 찾습니다.
+        repo = g.get_repo(REPO_NAME)
+    except Exception as e:
+        print(f"❌ 레포지토리 연결 실패: {e}")
+        return
+    
+    # 2. 파일명 생성 (오늘 날짜)
+    today = datetime.now().strftime("%Y-%m-%d")
+    file_path = f"news-archiver/daily_reports/{today}_Briefing.md"
+    
+    # 3. 마크다운 내용 구성
+    # (상단에 날짜 헤더를 붙이고, 그 아래에 전달받은 내용을 그대로 이어 붙입니다)
+    content = f"# 📅 {today} Daily Market Briefing\n\n"
+    
+    # ★ 핵심: 전달받은 긴 텍스트를 변형 없이 그대로 붙여넣기
+    content += briefing_content 
+
+    # 4. GitHub에 파일 생성 (또는 업데이트)
+    try:
+        # 이미 파일이 있으면 가져와서 업데이트(덮어쓰기)
+        contents = repo.get_contents(file_path)
+        repo.update_file(contents.path, f"Update report: {today}", content, contents.sha)
+        print(f"✅ GitHub 업데이트 완료: https://github.com/{REPO_NAME}/blob/main/{file_path}")
+    except:
+        # 파일이 없으면 새로 생성
+        repo.create_file(file_path, f"Add report: {today}", content)
+        print(f"✅ GitHub 신규 생성 완료: https://github.com/{REPO_NAME}/blob/main/{file_path}")
