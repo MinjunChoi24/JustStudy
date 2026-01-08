@@ -11,8 +11,8 @@
 
 * 수집한 뉴스기사들의 **Category,Subject,Sector**를 AI로 분류하여, Notion Database에 저장하는 **Archive** 역할을 수행한다. 그 후에 Notion에서의 정렬을 통해, 원하는 대상에 대한 **Research**를 돕는다.
 
-
-
+<br/>
+<br/>
 
 ## 🔄 Automated Workflow
 
