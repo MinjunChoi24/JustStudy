@@ -4,7 +4,7 @@ from notion_client import Client
 from dotenv import load_dotenv
 from github import Github
 from datetime import datetime
-
+from zoneinfo import ZoneInfo
 
 load_dotenv()
 
@@ -101,7 +101,7 @@ def save_to_github(briefing_content):
         return
     
     # 2. 파일명 생성 (오늘 날짜)
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = datetime.now(ZoneInfo('Asia/Seoul')).strftime("%Y-%m-%d")
     file_path = f"news-archiver/daily_reports/{today}_Briefing.md"
     
     # 3. 마크다운 내용 구성
