@@ -2,33 +2,42 @@
 
 **Financial News Archiver**는 한국 기준 오전 8시에 금융 시장 뉴스를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
 
-## 절차
+## 🔄 Automated Workflow
 
-1. 데이터 수집
+### 1. Data Collection
 * **뉴스 자동 수집**: Naver Search API를 활용하여 주요 금융 키워드(금리, 환율, 증시) 관련 최신 뉴스를 실시간으로 수집합니다.
 
-2. 데이터 분석
+### 2. AI Analysis
 * **Daily Market Briefing 생성**: Google **Gemini 2.5 Flash** 모델을 활용하여 수집된 뉴스를 바탕으로 '오늘의 시황 브리핑'을 자동으로 작성합니다.
 * **AI 기반 뉴스 분류**: 로컬 LLM인 **Ollama (Gemma 3:4b)** 를 활용하여 뉴스의 Subject, Category, Sector(Category가 Company일 경우)를 정밀하게 분류하고 영문 태깅을 수행합니다.
 
-3. 데이터 저장
+### 3. Data Archiving
 * **Notion 자동 동기화**: 수집된 뉴스기사들을 **Notion API**를 통해 News_Archive Database에 저장합니다.
 * **GitHub 리포트 발행**: 생성된 브리핑 리포트를 Markdown 파일로 변환하여 GitHub 레포지토리에 자동 커밋합니다.
 
----
+```mermaid
+graph TD
+    %% 스타일 정의
+    classDef api fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef ai fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef storage fill:#bfb,stroke:#333,stroke-width:2px;
 
-## 🛠 Tech Stack
+    %% 1. 데이터 수집 단계
+    Start[Naver Search API]:::api -->|Fetch Keywords: 금리, 환율, 증시| RawData(Raw News Data)
 
-| Category | Technology | Usage |
-| :--- | :--- | :--- |
-| **Language** | ![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white) | 메인 로직 및 데이터 처리 |
-| **Data Source** | **Naver Search API** | 금융 뉴스 데이터 크롤링 |
-| **LLM (Cloud)** | **Google Gemini 2.5 Flash** | 데일리 마켓 브리핑 요약 작성 |
-| **LLM (Local)** | **Ollama (Gemma 3:4b)** | 뉴스 기사 분류 |
-| **Database** | **Notion API** | 뉴스 데이터베이스 구축 및 시각화 |
-| **VCS** | **PyGithub** | 일일 리포트 자동 커밋 및 저장 |
+    %% 2. 데이터 분석 단계 (Sub-graph)
+    subgraph "AI Analysis Engine"
+        RawData --> Gemini{Gemini 2.5 Flash}:::ai
+        RawData --> Ollama{Ollama<br/>Gemma 3:4b}:::ai
+        
+        Gemini -->|Generate Summary| Briefing[Daily Market Briefing]
+        Ollama -->|Classify & Tag| Tags[Category / Sector / Subject]
+    end
 
----
+    %% 3. 데이터 저장 단계
+    Briefing -->|Convert to .md & Commit| GitHub((GitHub Repo)):::storage
+    Tags -->|Sync via API| Notion((Notion News Archive)):::storage
+```
 
 ## 📂 Project Structure
 
