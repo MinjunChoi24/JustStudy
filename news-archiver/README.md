@@ -1,10 +1,14 @@
 # 📈 Financial News Archiver & AI Analyst
 
-**Financial News Archiver**는 한국 기준 오전 8시에 금융 시장 뉴스를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
+**Financial News Archiver**는 금융 시장 뉴스를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
 
-## Why
 
-* 우리가 흔히 구독하는 종이신문,전자신문 등은 신문에 표시되어 있는 날짜가 아닌, 그 전날 밤까지의 뉴스가 담긴다. 신문이 작성되고, 만들어져서 배급되는 데까지의 **갭(Gap)**이 존재하는 것이다. 그러므로 **Financial News Archiver**는 당일의 뉴스를 확인하기 위해 **한국 기준 아침 8시**에 뉴스 기사를 수집하여, 일반적으로 구독하는 신문과의 **Gap**을 줄이도록 하는 **보완재** 역할을 담당한다. 
+## Introduction
+
+* 우리가 흔히 구독하는 종이신문,전자신문 등은 신문에 표시되어 있는 날짜가 아닌, 그 전날 밤까지의 뉴스가 담긴다. 신문이 작성되고, 만들어져서 배급되는 데까지 일종의 **갭(Gap)** 이 존재하는 것이다. 따라서 **Financial News Archiver**는 해당 날짜의 이슈를 확인하기 위해 **한국 기준 아침 8시**에 뉴스 기사를 수집하고, AI를 통해 **"Daily Market Briefing"** 을 작성하여 기존의 신문과 **상호보완적** 역할을 수행하도록 한다. 
+
+* 수집한 뉴스기사들의 **Category,Subject,Sector**를 AI로 분류하여, Notion Database에 저장하는 **Archive** 역할을 수행한다. 그 후에 Notion에서의 정렬을 통해, 원하는 대상에 대한 **Research**를 돕는다.
+
 
 ## 🔄 Automated Workflow
 
