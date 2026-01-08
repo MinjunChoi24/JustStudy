@@ -100,6 +100,8 @@ def generate_news_briefing(s):
     write a "Daily Market Briefing" that allows the reader
     to quickly grasp today’s financial market conditions.
 
+    Write the briefing in Korean.
+
     Below is today’s news:
 
     {news_text_block}
