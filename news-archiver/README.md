@@ -51,7 +51,6 @@ graph TD
     Tags -->|Sync via API| Notion((Notion News Archive)):::storage
 ```
 <br/>
-<br/>
 
 ## 🛠 Technology Stack
 
