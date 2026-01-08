@@ -1,46 +1,36 @@
-# 📈 Financial News AI Archiver (금융 뉴스 AI 자동 수집기)
+# 📈 Financial News Archiver & AI Analyst
 
-![Python](https://img.shields.io/badge/Python-3.13%2B-blue)
-![Notion API](https://img.shields.io/badge/Notion-API-000000)
-![Naver API](https://img.shields.io/badge/Naver-Search_API-03C75A)
+**Financial News Archiver**는 매일 쏟아지는 금융 시장 뉴스(금리, 환율, 증시)를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
 
-### cmd
-d:
+## 🌟 Key Features
 
-cd D:\Study_Finance\news-archiver
+* **뉴스 자동 수집**: Naver Search API를 활용하여 주요 금융 키워드(금리, 환율, 증시) 관련 최신 뉴스를 실시간으로 수집합니다.
+* **Daily Market Briefing 생성**: Google **Gemini 2.5 Flash** 모델을 활용하여 수집된 뉴스를 바탕으로 '오늘의 시황 브리핑'을 자동으로 작성합니다.
+* **AI 기반 뉴스 분류**: 로컬 LLM인 **Ollama (Gemma 3:4b)** 를 활용하여 뉴스의 카테고리(섹터, 주제)를 정밀하게 분류하고 영문 태깅을 수행합니다.
+* **Notion 자동 동기화**: 분석된 데이터(제목, 요약, 태그, 섹터 등)를 Notion API를 통해 체계적으로 적재합니다.
+* **GitHub 리포트 발행**: 생성된 브리핑 리포트를 Markdown 파일로 변환하여 GitHub 레포지토리에 자동 커밋합니다.
 
-.\venv\Scripts\activate
+---
 
-python main.py
+## 🛠 Tech Stack
 
-## Project Overview
-매일 쏟아지는 방대한 금융 뉴스를 효율적으로 관리하기 위한 **자동화 파이프라인**입니다.
-Naver 검색 API를 통해 주요 경제 뉴스(금리, 환율, 증시 등)를 수집하고, **LLM(Large Language Model)을 이용해 뉴스의 핵심 주제와 섹터를 분석**한 뒤, Notion 데이터베이스에 자동으로 아카이빙합니다.
+| Category | Technology | Usage |
+| :--- | :--- | :--- |
+| **Language** | ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?logo=python&logoColor=white) | 메인 로직 및 데이터 처리 |
+| **Data Source** | **Naver Search API** | 금융 뉴스 데이터 크롤링 |
+| **LLM (Cloud)** | **Google Gemini 2.5 Flash** | 데일리 마켓 브리핑 요약 작성 |
+| **LLM (Local)** | **Ollama (Gemma 3:4b)** | 뉴스 기사 분류 및 메타데이터 추출 |
+| **Database** | **Notion API** | 뉴스 데이터베이스 구축 및 시각화 |
+| **VCS** | **PyGithub** | 일일 리포트 자동 커밋 및 저장 |
 
-단순한 크롤링을 넘어, **AI를 활용한 비정형 데이터의 구조화(Structured Data)**를 목표로 합니다.
+---
 
-## Key Features
-1. **Automated Scraping**: `requests`를 활용해 Naver 뉴스 검색 API에서 경제/금융 관련 최신 기사 수집
-2. **AI Analysis**: 수집된 기사의 제목과 요약을 LLM이 분석하여 **Category(분야), Subject(주제), Sector(산업)** 자동 분류
-3. **Notion Integration**: 분석된 데이터를 Notion API를 통해 실시간으로 DB에 적재
-4. **Keyword Customization**: 시황, 환율, 특징주 등 시장 상황에 맞는 유동적 키워드 설정
+## 📂 Project Structure
 
-## Tech Stack
-- **Language**: Python 3.x
-- **Libraries**: `requests`, `python-dotenv`, `openai` (or `langchain`)
-- **APIs**:
-  - Naver Search API (News)
-  - Notion API
-  - LLM API (OpenAI GPT / Ollama etc.)
-
-## 📂 Directory Structure
 ```bash
-├── .gitignore       # API key 등 중요한 정보 유출 방지
-├── README.md        # 프로젝트 문서
-├── classifier.py    # AI 기반 뉴스 분석 및 분류 모듈
-├── main.py          # 프로그램 진입점 (Orchestrator)
-├── requirements.txt # 설치가 필요한 라이브러리
-├── scraper.py       # 네이버 뉴스 수집 모듈
-├── uploader.py      # Notion 데이터베이스 업로드 모듈
-├── .env             # 환경 변수 (API Key 관리)
-└── README.md        # 프로젝트 문서
+├── main.py             # 프로그램 진입점 (Orchestrator)
+├── scraper.py          # 네이버 뉴스 수집 및 Gemini 브리핑 생성
+├── classifier.py       # Ollama를 이용한 뉴스 분류 및 분석
+├── uploader.py         # Notion 및 GitHub 업로드 처리
+├── requirements.txt    # 의존성 라이브러리 목록
+└── .env                # API 키 및 환경 변수 설정
