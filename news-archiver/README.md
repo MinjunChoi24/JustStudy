@@ -51,7 +51,29 @@ graph TD
     Tags -->|Sync via API| Notion((Notion News Archive)):::storage
 ```
 
-## Technology
+## 🔧 Technology
+
+## 🛠 Technology Stack
+
+### Core Architecture
+| Category | Technology | Usage |
+| :--- | :--- | :--- |
+| **Language** | ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white) | 전체 데이터 파이프라인 및 로직 구현 |
+| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white) | Cron 스케줄링을 통한 매일 오전 8시 자동 실행 |
+| **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white) | 소스 코드 관리 및 리포트 자동 커밋(Commit) |
+
+### AI & Analysis (Hybrid Model)
+| Model | Type | Role |
+| :--- | :--- | :--- |
+| **Gemini 2.5 Flash** | Cloud LLM | **Summarization**: 뉴스 데이터를 종합하여 브리핑 리포트(Text) 생성 |
+| **Gemma 3:4b** | Local LLM | **Classification**: Ollama를 통해 로컬 환경에서 기사 분류 및 태깅 수행 |
+
+### Data Integration
+* **Naver Search API**: 금융 관련(금리, 환율, 증시) 실시간 뉴스 데이터 수집
+* **Notion API**: 수집 및 분류된 데이터를 Notion Database에 구조화하여 적재
+* **GitHub REST API**: 생성된 마크다운 리포트를 레포지토리에 업로드
+
+
 
 ## 📂 Project Structure
 
