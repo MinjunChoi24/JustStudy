@@ -50,8 +50,8 @@ graph TD
     Briefing -->|Convert to .md & Commit| GitHub((GitHub Repo)):::storage
     Tags -->|Sync via API| Notion((Notion News Archive)):::storage
 ```
-
-## 🔧 Technology
+<br/>
+<br/>
 
 ## 🛠 Technology Stack
 
@@ -73,7 +73,8 @@ graph TD
 * **Notion API**: 수집 및 분류된 데이터를 Notion Database에 구조화하여 적재
 * **GitHub REST API**: 생성된 마크다운 리포트를 레포지토리에 업로드
 
-
+<br/>
+<br/>
 
 ## 📂 Project Structure
 
