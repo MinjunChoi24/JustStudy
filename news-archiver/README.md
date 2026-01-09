@@ -1,46 +1,87 @@
-# 📈 Financial News AI Archiver (금융 뉴스 AI 자동 수집기)
+# 📈 Financial News Automation System (FNAS)
 
-![Python](https://img.shields.io/badge/Python-3.13%2B-blue)
-![Notion API](https://img.shields.io/badge/Notion-API-000000)
-![Naver API](https://img.shields.io/badge/Naver-Search_API-03C75A)
+**FNAS**는 금융 시장 뉴스를 자동으로 수집하고, AI를 통해 분석하여 **Notion 데이터베이스**와 **GitHub**에 리포트 형태로 아카이빙하는 자동화 시스템입니다.
 
-### cmd
-d:
+<br/>
+<br/>
 
-cd D:\Study_Finance\news-archiver
+## 🍀 Introduction
 
-.\venv\Scripts\activate
+* 우리가 흔히 구독하는 종이신문,전자신문 등은 신문에 표시되어 있는 날짜가 아닌, 그 전날 밤까지의 뉴스가 담긴다. 신문이 작성되고, 만들어져서 배급되는 데까지 일종의 **갭(Gap)** 이 존재하는 것이다. 따라서 **FNAS**는 해당 날짜의 이슈를 확인하기 위해 **한국 기준 아침 8시**에 뉴스 기사를 수집하고, AI를 통해 **"Daily Market Briefing"** 을 작성하여 기존의 신문과 **상호보완적** 역할을 수행하도록 한다. 
 
-python main.py
+* 수집한 뉴스기사들의 **Category,Subject,Sector**를 AI로 분류하여, Notion Database에 저장하는 **Archive** 역할을 수행한다. 그 후에 Notion에서의 정렬을 통해, 원하는 대상에 대한 **Research**를 돕는다.
 
-## Project Overview
-매일 쏟아지는 방대한 금융 뉴스를 효율적으로 관리하기 위한 **자동화 파이프라인**입니다.
-Naver 검색 API를 통해 주요 경제 뉴스(금리, 환율, 증시 등)를 수집하고, **LLM(Large Language Model)을 이용해 뉴스의 핵심 주제와 섹터를 분석**한 뒤, Notion 데이터베이스에 자동으로 아카이빙합니다.
+<br/>
+<br/>
 
-단순한 크롤링을 넘어, **AI를 활용한 비정형 데이터의 구조화(Structured Data)**를 목표로 합니다.
+## 🔄 Automated Workflow
 
-## Key Features
-1. **Automated Scraping**: `requests`를 활용해 Naver 뉴스 검색 API에서 경제/금융 관련 최신 기사 수집
-2. **AI Analysis**: 수집된 기사의 제목과 요약을 LLM이 분석하여 **Category(분야), Subject(주제), Sector(산업)** 자동 분류
-3. **Notion Integration**: 분석된 데이터를 Notion API를 통해 실시간으로 DB에 적재
-4. **Keyword Customization**: 시황, 환율, 특징주 등 시장 상황에 맞는 유동적 키워드 설정
+### 1. Data Collection
+* **뉴스 자동 수집**: Naver Search API를 활용하여 주요 금융 키워드(금리, 환율, 증시) 관련 최신 뉴스를 실시간으로 수집합니다.
 
-## Tech Stack
-- **Language**: Python 3.x
-- **Libraries**: `requests`, `python-dotenv`, `openai` (or `langchain`)
-- **APIs**:
-  - Naver Search API (News)
-  - Notion API
-  - LLM API (OpenAI GPT / Ollama etc.)
+### 2. AI Analysis
+* **Daily Market Briefing 생성**: Google **Gemini 2.5 Flash** 모델을 활용하여 수집된 뉴스를 바탕으로 '오늘의 시황 브리핑'을 자동으로 작성합니다.
+* **AI 기반 뉴스 분류**: 로컬 LLM인 **Ollama (Gemma 3:4b)** 를 활용하여 뉴스의 Subject, Category, Sector(Category가 Company일 경우)를 정밀하게 분류하고 영문 태깅을 수행합니다.
 
-## 📂 Directory Structure
+### 3. Data Archiving
+* **Notion 자동 동기화**: 수집된 뉴스기사들을 **Notion API**를 통해 News_Archive Database에 저장합니다.
+* **GitHub 리포트 발행**: 생성된 브리핑 리포트를 Markdown 파일로 변환하여 GitHub 레포지토리에 자동 커밋합니다.
+
+```mermaid
+graph TD
+    %% 스타일 정의
+    classDef api fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef ai fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef storage fill:#bfb,stroke:#333,stroke-width:2px;
+
+    %% 1. 데이터 수집 단계
+    Start[Naver Search API]:::api -->|Fetch Keywords: 금리, 환율, 증시| RawData(Raw News Data)
+
+    %% 2. 데이터 분석 단계 (Sub-graph)
+    subgraph "AI Analysis Engine"
+        RawData --> Gemini{Gemini 2.5 Flash}:::ai
+        RawData --> Ollama{Ollama<br/>Gemma 3:4b}:::ai
+        
+        Gemini -->|Generate Summary| Briefing[Daily Market Briefing]
+        Ollama -->|Classify & Tag| Tags[Category / Sector / Subject]
+    end
+
+    %% 3. 데이터 저장 단계
+    Briefing -->|Convert to .md & Commit| GitHub((GitHub Repo)):::storage
+    Tags -->|Sync via API| Notion((Notion News Archive)):::storage
+```
+<br/>
+
+## 🛠 Technology Stack
+
+### Core Architecture
+| Category | Technology | Usage |
+| :--- | :--- | :--- |
+| **Language** | ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white) | 전체 데이터 파이프라인 및 로직 구현 |
+| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white) | Cron 스케줄링을 통한 매일 오전 8시 자동 실행 |
+| **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white) | 소스 코드 관리 및 리포트 자동 커밋(Commit) |
+
+### AI & Analysis (Hybrid Model)
+| Model | Type | Role |
+| :--- | :--- | :--- |
+| **Gemini 2.5 Flash** | Cloud LLM | **Summarization**: 뉴스 데이터를 종합하여 브리핑 리포트(Text) 생성 |
+| **Gemma 3:4b** | Local LLM | **Classification**: Ollama를 통해 로컬 환경에서 기사 분류 및 태깅 수행 |
+
+### Data Integration
+* **Naver Search API**: 금융 관련(금리, 환율, 증시) 실시간 뉴스 데이터 수집
+* **Notion API**: 수집 및 분류된 데이터를 Notion Database에 구조화하여 적재
+* **GitHub REST API**: 생성된 마크다운 리포트를 레포지토리에 업로드
+
+<br/>
+<br/>
+
+## 📂 Project Structure
+
 ```bash
-├── .gitignore       # API key 등 중요한 정보 유출 방지
-├── README.md        # 프로젝트 문서
-├── classifier.py    # AI 기반 뉴스 분석 및 분류 모듈
-├── main.py          # 프로그램 진입점 (Orchestrator)
-├── requirements.txt # 설치가 필요한 라이브러리
-├── scraper.py       # 네이버 뉴스 수집 모듈
-├── uploader.py      # Notion 데이터베이스 업로드 모듈
-├── .env             # 환경 변수 (API Key 관리)
-└── README.md        # 프로젝트 문서
+├── Daily_reports/      # Daily Market Briefing 저장 폴더
+├── .gitignore          # Git 제외 파일 목록
+├── classifier.py       # Ollama를 이용한 뉴스 분류 및 분석
+├── main.py             # 프로그램 진입점 (Orchestrator)
+├── requirements.txt    # 의존성 라이브러리 목록
+├── scraper.py          # 네이버 뉴스 수집 및 Gemini 브리핑 생성
+└── uploader.py         # Notion 및 GitHub 업로드 처리
