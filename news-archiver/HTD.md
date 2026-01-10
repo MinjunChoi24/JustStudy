@@ -1,5 +1,8 @@
 ## Daily_Market_Briefing 모델 비교
-### gemini-2.5-pro vs gemini-3-flash-preview vs gemini-2.5-flash
+### gemini-2.5-flash -> 현재 사용 모델
+### gemini-2.5-pro 
+### gemini-3-flash-preview 
+
 
 </br>
 
