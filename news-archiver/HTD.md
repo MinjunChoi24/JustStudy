@@ -21,7 +21,7 @@
 
 ## Prompt 비교
 ### 분류 할때 prompt
-
+    
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
     
