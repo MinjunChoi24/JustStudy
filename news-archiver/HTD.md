@@ -22,7 +22,7 @@
 ## Prompt 비교
 ### 분류 할때 prompt
 
-*     prompt = f"""
+    prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
     
     [Article]
@@ -42,9 +42,9 @@
     
     Output JSON only. Do NOT use Markdown code blocks. Just raw JSON.
     """
-
+</br>
 ### <Daily_Market_Briefing> prompt
-* prompt = f"""
+    prompt = f"""
     Based on the following news headlines and summaries,
     write a "Daily Market Briefing" that allows the reader
     to quickly grasp today’s financial market conditions.
