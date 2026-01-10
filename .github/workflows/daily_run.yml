@@ -40,7 +40,7 @@ jobs:
 
       # 5. 모델 다운로드
       - name: Pull Llama Model
-        run: ollama pull gemma3:4b 
+        run: ollama pull martain7r/finance-llama-8b:q4_k_m 
 
       # 6. 파이썬 라이브러리 설치
       - name: Install dependencies
