@@ -4,9 +4,7 @@ import json
 
 
 def analyze_article(article):
-    """
-    Analyzes a news article using the gemma3:4b Ollama model and returns a JSON response.
-    """
+
     # ✅ 2025년 최신 모델 사용
     target_model = "gemma3:4b"
 
