@@ -37,8 +37,8 @@
         If the Category is NOT 'Company': Leave this field blank (empty string).
     4. Summary: Output the summary content exactly as provided in the [Article] section. Do NOT translate it.
     5. Language & Format Rule: 
-   - Translate (Category, Subject, Sector) into English. 
-   - Use the official global company name (e.g., use "Samsung Electronics" instead of "Samsung", "Hyundai Motor" instead of "Hyundai").
+    Translate (Category, Subject, Sector) into English. 
+    Use the official global company name (e.g., use "Samsung Electronics" instead of "Samsung", "Hyundai Motor" instead of "Hyundai").
     
     Output JSON only. Do NOT use Markdown code blocks. Just raw JSON.
     """
