@@ -5,10 +5,10 @@ import json
 
 def analyze_article(article):
     """
-    Analyzes a news article using the finance-llama-8b Ollama model and returns a JSON response.
+    Analyzes a news article using the gemma3:4b Ollama model and returns a JSON response.
     """
     # ✅ 2025년 최신 모델 사용
-    target_model = "martain7r/finance-llama-8b:q4_k_m"
+    target_model = "gemma3:4b"
 
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
