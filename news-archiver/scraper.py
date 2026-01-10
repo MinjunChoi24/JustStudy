@@ -8,7 +8,7 @@ import google.generativeai as genai
 
 load_dotenv()
 
-def naver_news_api(query="", display=35):
+def naver_news_api(query="", display=15):
     client_id = os.getenv("NAVER_CLIENT_ID")
     client_secret = os.getenv("NAVER_CLIENT_SECRET")
     
@@ -62,7 +62,7 @@ def get_news_data():
     # 키워드별 반복 수집
     for keyword in keywords:
         # print(f" -> '{keyword}' 수집 중...")  # 진행상황 출력이 필요하면 주석 해제
-        result = naver_news_api(query=keyword, display=3) 
+        result = naver_news_api(query=keyword, display=15) 
         all_news_data.extend(result)
         time.sleep(0.3) # API 제한 고려
 
@@ -88,7 +88,7 @@ def generate_news_briefing(s):
     API_KEY = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=API_KEY)
 
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-Pro')
     # 3-1. 리스트 데이터를 LLM이 읽기 편한 문자열 포맷으로 변환
     news_text_block = ""
     for idx, item in enumerate(extracted_data):
