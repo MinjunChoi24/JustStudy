@@ -20,7 +20,7 @@
 </br>
 
 ## Prompt 비교
-### 분류 할때 prompt
+### 분류 할때 prompt - Ollama
     
     prompt = f"""
     You are a financial news analyst. Analyze the following news article and provide the output in strict JSON format.
@@ -44,7 +44,7 @@
     """
 </br>
 
-### <Daily_Market_Briefing> prompt
+### <Daily_Market_Briefing> prompt - Gemini
     
     prompt = f"""
     Based on the following news headlines and summaries,
