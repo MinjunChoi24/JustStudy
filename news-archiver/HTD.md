@@ -44,6 +44,7 @@
     """
 </br>
 ### <Daily_Market_Briefing> prompt
+    
     prompt = f"""
     Based on the following news headlines and summaries,
     write a "Daily Market Briefing" that allows the reader
