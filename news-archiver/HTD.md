@@ -43,6 +43,7 @@
     Output JSON only. Do NOT use Markdown code blocks. Just raw JSON.
     """
 </br>
+
 ### <Daily_Market_Briefing> prompt
     
     prompt = f"""
