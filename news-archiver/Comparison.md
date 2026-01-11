@@ -1,6 +1,6 @@
 ## Daily_Market_Briefing 모델 비교
 ### gemini-2.5-flash -> 현재 사용 모델
-### gemini-2.5-pro 
+### gemini-2.5-pro -> Quata 초과로 쓸 수 없음
 ### gemini-3-flash-preview 
 
 
