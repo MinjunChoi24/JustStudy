@@ -88,7 +88,7 @@ def generate_news_briefing(s):
     API_KEY = os.getenv("GEMINI_API_KEY")
     genai.configure(api_key=API_KEY)
 
-    model = genai.GenerativeModel('gemini-2.5-pro')
+    model = genai.GenerativeModel('gemini-3-flash-preview')
     # 3-1. 리스트 데이터를 LLM이 읽기 편한 문자열 포맷으로 변환
     news_text_block = ""
     for idx, item in enumerate(extracted_data):
