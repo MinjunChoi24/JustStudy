@@ -7,7 +7,7 @@
 
 ## 🍀 Introduction
 
-* 우리가 흔히 구독하는 종이신문,전자신문 등은 신문에 표시되어 있는 날짜가 아닌, 그 전날 밤까지의 뉴스가 담긴다. 신문이 작성되고, 만들어져서 배급되는 데까지 일종의 **갭(Gap)** 이 존재하는 것이다. 따라서 **FNAS**는 해당 날짜의 이슈를 확인하기 위해 **한국 기준 아침 8시**에 뉴스 기사를 수집하고, AI를 통해 **"Daily Market Briefing"** 을 작성하여 기존의 신문과 **상호보완적** 역할을 수행하도록 한다. 
+* 우리가 흔히 구독하는 종이신문,전자신문 등은 신문에 표시되어 있는 날짜가 아닌, 그 전날 밤까지의 뉴스가 담긴다. 신문이 작성되고, 만들어져서 배급되는 데까지 일종의 **갭(Gap)** 이 존재하는 것이다. 따라서 **FNAS**는 해당 날짜의 이슈를 확인하기 위해 **한국 기준 아침 7시 45분**에 뉴스 기사를 수집하고, AI를 통해 **"Daily Market Briefing"** 을 작성하여 기존의 신문과 **상호보완적** 역할을 수행하도록 한다. 
 
 * 수집한 뉴스기사들의 **Category,Subject,Sector**를 AI로 분류하여, Notion Database에 저장하는 **Archive** 역할을 수행한다. 그 후에 Notion에서의 정렬을 통해, 원하는 대상에 대한 **Research**를 돕는다.
 
@@ -20,7 +20,7 @@
 * **뉴스 자동 수집**: Naver Search API를 활용하여 주요 금융 키워드(금리, 환율, 증시) 관련 최신 뉴스를 실시간으로 수집합니다.
 
 ### 2. AI Analysis
-* **Daily Market Briefing 생성**: Google **Gemini 2.5 Flash** 모델을 활용하여 수집된 뉴스를 바탕으로 '오늘의 시황 브리핑'을 자동으로 작성합니다.
+* **Daily Market Briefing 생성**: Google **Gemini 3.0 Flash** 모델을 활용하여 수집된 뉴스를 바탕으로 '오늘의 시황 브리핑'을 자동으로 작성합니다.
 * **AI 기반 뉴스 분류**: 로컬 LLM인 **Ollama (Gemma 3:4b)** 를 활용하여 뉴스의 Subject, Category, Sector(Category가 Company일 경우)를 정밀하게 분류하고 영문 태깅을 수행합니다.
 
 ### 3. Data Archiving
@@ -39,7 +39,7 @@ graph TD
 
     %% 2. 데이터 분석 단계 (Sub-graph)
     subgraph "AI Analysis Engine"
-        RawData --> Gemini{Gemini 2.5 Flash}:::ai
+        RawData --> Gemini{Gemini 3.0 Flash}:::ai
         RawData --> Ollama{Ollama<br/>Gemma 3:4b}:::ai
         
         Gemini -->|Generate Summary| Briefing[Daily Market Briefing]
@@ -58,13 +58,13 @@ graph TD
 | Category | Technology | Usage |
 | :--- | :--- | :--- |
 | **Language** | ![Python](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white) | 전체 데이터 파이프라인 및 로직 구현 |
-| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white) | Cron 스케줄링을 통한 매일 오전 8시 자동 실행 |
+| **Automation** | ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=github-actions&logoColor=white) | Cron 스케줄링을 통한 매일 오전 7시 45분 자동 실행 |
 | **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white) | 소스 코드 관리 및 리포트 자동 커밋(Commit) |
 
 ### AI & Analysis (Hybrid Model)
 | Model | Type | Role |
 | :--- | :--- | :--- |
-| **Gemini 2.5 Flash** | Cloud LLM | **Summarization**: 뉴스 데이터를 종합하여 브리핑 리포트(Text) 생성 |
+| **Gemini 3.0 Flash** | Cloud LLM | **Summarization**: 뉴스 데이터를 종합하여 브리핑 리포트(Text) 생성 |
 | **Gemma 3:4b** | Local LLM | **Classification**: Ollama를 통해 로컬 환경에서 기사 분류 및 태깅 수행 |
 
 ### Data Integration
