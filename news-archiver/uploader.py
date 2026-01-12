@@ -21,7 +21,6 @@ def save_to_notion(article, ai_result):
         cat_raw = ai_result.get('Category', '기타')
         sub_raw = ai_result.get('Subject', '일반')
         sum_raw = ai_result.get('Summary', '요약 없음')
-        sec_raw = ai_result.get('Sector', '')
 
         # 2. 데이터 정제 (리스트 변환 및 문자열 처리)
         if not isinstance(cat_raw, list):
@@ -30,15 +29,10 @@ def save_to_notion(article, ai_result):
         if not isinstance(sub_raw, list):
             sub_raw = str(sub_raw).split(',')
 
-        if not isinstance(sec_raw, list):
-            sec_raw = [sec_raw]
-
-        
 
         # 다중 선택(Multi-select)용 리스트 만들기
         category_list = [{"name": str(c).replace(",", "")} for c in cat_raw]
         subject_list = [{"name": str(s).replace(",", "")} for s in sub_raw]
-        sector_list = [{"name": str(se).replace(",", "")} for se in sec_raw if str(se).strip() != ""]
         
         # [중요 수정] Summary는 rich_text 형식이므로 content에 담아야 함 (2000자 제한)
         summary_content = str(sum_raw)[:2000]
@@ -66,10 +60,8 @@ def save_to_notion(article, ai_result):
                 },
                 "URL": { # 링크
                     "url": article['URL']
-                },
-                "Sector":{
-                    "multi_select": sector_list
                 }
+                
 
             }
         )
