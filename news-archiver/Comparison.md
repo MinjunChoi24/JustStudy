@@ -31,11 +31,8 @@
     [Requirements] 
     1. Category: Classify the news (e.g. Company,Finance,Market,Industry,Real estate,Macro)
     2. Subject: The main entity or keyword (e.g., Samsung, NPS, US Treasury).
-    3. Sector: Follow this rule strictly:
-        If the Category is 'Company': Identify the specific business sector the company belongs to (e.g., Semiconductor, Automotive, Bio, Banking).
-        If the Category is NOT 'Company': Leave this field blank (empty string).
-    4. Summary: Output the summary content exactly as provided in the [Article] section. Do NOT translate it.
-    5. Language & Format Rule: 
+    3. Summary: Output the summary content exactly as provided in the [Article] section. Do NOT translate it.
+    4. Language & Format Rule: 
     Translate (Category, Subject, Sector) into English. 
     Use the official global company name (e.g., use "Samsung Electronics" instead of "Samsung", "Hyundai Motor" instead of "Hyundai").
     
