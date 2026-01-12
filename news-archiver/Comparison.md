@@ -1,16 +1,15 @@
 ## Daily_Market_Briefing 모델 비교
-### gemini-2.5-flash -> 현재 사용 모델
-### gemini-2.5-pro -> Quata 초과로 쓸 수 없음
-### gemini-3-flash-preview 
+### gemini-3-flash-preview <- 현재 사용 모델
+### gemini-2.5-pro <- Quata 초과로 쓸 수 없음
 
 
 </br>
 
 ## Classification 모델 비교
-### gemma3:4b -> 현재 사용 모델
-### Finance-Llama-8B -> 쓰레기
-### qwen2.5:7b -> 너무 오래걸림 . 분류 개별로
-### qwen3:8b -> 오래걸림. 분류 Not bad
+### gemma3:4b <- 현재 사용 모델
+### Finance-Llama-8B <- 쓰레기
+### qwen2.5:7b <- 너무 오래걸림 . 분류 개별로
+### qwen3:8b <- 오래걸림. 분류 Not bad
 
 </br>
 
