@@ -62,7 +62,7 @@ def get_news_data():
     # 키워드별 반복 수집
     for keyword in keywords:
         # print(f" -> '{keyword}' 수집 중...")  # 진행상황 출력이 필요하면 주석 해제
-        result = naver_news_api(query=keyword, display=15) 
+        result = naver_news_api(query=keyword, display=3) 
         all_news_data.extend(result)
         time.sleep(0.3) # API 제한 고려
 
