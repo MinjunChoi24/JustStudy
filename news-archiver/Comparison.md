@@ -53,8 +53,7 @@
 
     {news_text_block}
     """
-    
-    </br>
+
 ### 비교 프롬프트
     prompt = f"""
     You are a professional financial analyst. Based on the provided news headlines and summaries, 
