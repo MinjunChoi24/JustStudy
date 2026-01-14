@@ -98,7 +98,7 @@ def save_to_github(briefing_content):
     
     # 3. 마크다운 내용 구성
     # (상단에 날짜 헤더를 붙이고, 그 아래에 전달받은 내용을 그대로 이어 붙입니다)
-    content = f"# 📅 {today} Daily Market Briefing\n\n"
+    content = f"# 📅 {today} Daily Financial News\n\n"
     
     # ★ 핵심: 전달받은 긴 텍스트를 변형 없이 그대로 붙여넣기
     content += briefing_content 
