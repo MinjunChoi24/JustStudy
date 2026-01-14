@@ -96,14 +96,18 @@ def generate_news_briefing(s):
 
     # 3-2. 프롬프트 작성 (페르소나 부여 및 출력 형식 지정)
     prompt = f"""
-    Based on the following news headlines and summaries,
-    write a "Daily Market Briefing" that allows the reader
-    to quickly grasp today’s financial market conditions.
+    You are a professional financial analyst. Based on the provided news headlines and summaries, 
+    write a "Daily Financial News" report that allows readers to quickly grasp today’s market conditions.
 
-    Write the briefing in Korean.
+    Please structure the report into the following three sections:
+    1. Global Financial Markets (Interest rates, global stock markets, etc.)
+    2. Korean Financial Market (KOSPI/KOSDAQ, KRW exchange rate, domestic policy, etc.)
+    3. Other Major Issues (Significant corporate news, commodities, or other influential events)
+    
+    [Requirements]
+    - Language: Write the final briefing in Korean.
 
     Below is today’s news:
-
     {news_text_block}
     """
 
