@@ -1,4 +1,4 @@
-## Daily_Market_Briefing 모델 비교
+## Daily Financial News 모델 비교
 ### gemini-3-flash-preview <- 현재 사용 모델
 ### gemini-2.5-pro <- Quata 초과로 쓸 수 없음
 
@@ -54,7 +54,7 @@
     {news_text_block}
     """
 
-### 비교 프롬프트
+### 비교 프롬프트 
     prompt = f"""
     You are a professional financial analyst. Based on the provided news headlines and summaries, 
     write a "Daily Financial News" report that allows readers to quickly grasp today’s market conditions.
