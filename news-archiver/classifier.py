@@ -44,8 +44,11 @@ def analyze_article(article):
             return json_result
         except json.JSONDecodeError as e:
             print(f"❌ JSON decoding error: {e}.  Raw response: {text_result}")
-            return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
-
+            return {
+            "Category": "Error", 
+            "Subject": "분류 실패", 
+            "Summary": "AI 응답 오류로 분류하지 못했습니다."
+        }
     except Exception as e:
         print(f"❌ ollama 분석 중 에러: {e}")
         return {"Category": "기타", "Subject": "Error", "Summary": article['Summary']}
