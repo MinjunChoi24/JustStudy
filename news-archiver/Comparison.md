@@ -40,21 +40,7 @@
     """
 </br>
 
-### <Daily_Market_Briefing> prompt - Gemini - 현재 사용 프롬프트
-    
-    prompt = f"""
-    Based on the following news headlines and summaries,
-    write a "Daily Market Briefing" that allows the reader
-    to quickly grasp today’s financial market conditions.
-
-    Write the briefing in Korean.
-
-    Below is today’s news:
-
-    {news_text_block}
-    """
-
-### 비교 프롬프트 
+### <Daily_Market_Briefing> prompt - **Gemini** - 현재 사용 프롬프트
     prompt = f"""
     You are a professional financial analyst. Based on the provided news headlines and summaries, 
     write a "Daily Financial News" report that allows readers to quickly grasp today’s market conditions.
@@ -70,3 +56,5 @@
     Below is today’s news:
     {news_text_block}
     """
+
+
