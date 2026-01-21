@@ -1,3 +1,8 @@
+## 시간 비교
+### 한국 기준 7시 45분 <- 현재 
+### 한국 기준 7시 30분 
+
+
 ## Daily Financial News 모델 비교
 ### gemini-3-flash-preview <- 현재 사용 모델
 ### gemini-2.5-pro <- Quata 초과로 쓸 수 없음
