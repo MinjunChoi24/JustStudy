@@ -22,7 +22,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install papermill jupyter  # 노트북 실행을 위해 필요
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run Script
