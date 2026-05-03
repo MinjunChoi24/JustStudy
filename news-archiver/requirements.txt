@@ -1,6 +1,4 @@
 requests
-ollama
 python-dotenv
-notion-client
 PyGithub
-google.generativeai
+FinanceDataReader
