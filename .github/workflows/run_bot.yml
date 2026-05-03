@@ -29,5 +29,5 @@ jobs:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: |
-          # papermill을 사용해 실행만 하고 결과 파일은 임시로 생성(저장 안 됨)
-          papermill news-archiver/telegramBot.ipynb /dev/null
+          # papermill 앞에 python -m 을 붙여줍니다.
+          python -m papermill news-archiver/telegramBot.ipynb /dev/null
