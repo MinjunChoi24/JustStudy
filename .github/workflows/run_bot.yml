@@ -25,7 +25,10 @@ jobs:
           if [ -f news-archiver/requirements.txt ]; then pip install -r news-archiver/requirements.txt; fi
 
       - name: Install Korean Fonts
-        run: sudo apt-get install -y fonts-nanum
+        run: |
+          sudo apt-get update -all
+          sudo apt-get install -y fonts-nanum
+          fc-cache -fv
 
       - name: Run Script
         env:
