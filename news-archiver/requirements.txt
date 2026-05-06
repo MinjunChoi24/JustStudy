@@ -3,7 +3,3 @@ requests
 PyGithub
 FinanceDataReader
 
-# 노트북 실행을 위한 도구 (YAML에서 따로 설치하는 대신 여기에 넣으면 캐싱이 더 잘 됩니다)
-papermill
-jupyter
-ipykernel
