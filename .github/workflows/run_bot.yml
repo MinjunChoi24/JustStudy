@@ -26,11 +26,10 @@ jobs:
 
       - name: Install Korean Fonts
         run: sudo apt-get install -y fonts-nanum
-        
+
       - name: Run Script
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: |
-          # papermill 앞에 python -m 을 붙여줍니다.
-          python -m papermill news-archiver/telegramBot.ipynb /dev/null
+          python -m papermill news-archiver/telegramBot.ipynb output.ipynb
