@@ -33,3 +33,12 @@ jobs:
           CHAT_ID: ${{ secrets.CHAT_ID }}
         run: |
           python -m papermill news-archiver/telegramBot.ipynb output.ipynb
+
+      - name: Upload Debug Files
+        if: always() # 성공하든 실패하든 무조건 실행
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-results
+          path: |
+            output.ipynb
+            stock_return.png
