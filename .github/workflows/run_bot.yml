@@ -37,13 +37,13 @@ jobs:
         run: |
           python -m papermill news-archiver/telegramBot.ipynb output.ipynb
 
-      - name: Upload Debug Files
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-results
+      #- name: Upload Debug Files
+      # if: always()
+       # uses: actions/upload-artifact@v4
+       # with:
+        #  name: debug-results
           # 파일이 없어도 에러내지 않도록 설정
-          if-no-files-found: warn
-          path: |
-            output.ipynb
-            *.png
+         # if-no-files-found: warn
+          #path: |
+           # output.ipynb
+            #*.png
