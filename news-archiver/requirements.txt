@@ -3,4 +3,5 @@ PyGithub
 finance-datareader
 papermill
 ipykernel
+matplotlib
 
