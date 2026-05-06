@@ -1,5 +1,6 @@
-# 핵심 기능
 requests
 PyGithub
 FinanceDataReader
+papermill
+ipykernel
 
